@@ -35,4 +35,10 @@ jobs:
           echo ::set-output name=error::This is an error
           echo ::debug::This is a debug message
           echo ::add-mask::{value}
-
+      - name: env-vars
+        run: |
+          echo "var1=TEST" >> $GITHUB_ENV
+          echo "$var1"
+      - name: consume var
+        run: |
+          echo ${{ steps.env-vars.outputs.var1 }}
