@@ -1,8 +1,6 @@
 on: [push]
 
-env:
-  ACTIONS_STEP_DEBUG: true
-  ACTIONS_RUNNER_DEBUG: true
+
 
 jobs:
   hello_world_job:
