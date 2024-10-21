@@ -14,6 +14,8 @@ jobs:
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
+          ACTIONS_STEP_DEBUG: true
+          ACTIONS_RUNNER_DEBUG: true
       # Use the output from the `hello` step
       - name: Get the output time
         run: echo "The time was ${{ steps.hello.outputs.time }}"
