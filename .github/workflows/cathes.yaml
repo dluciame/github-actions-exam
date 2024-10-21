@@ -34,5 +34,5 @@ jobs:
           echo ::warning::This is a warning
           echo ::set-output name=error::This is an error
           echo ::debug::This is a debug message
-          echo ::mask::This is a secret
+          echo ::add-mask::{value}
 
