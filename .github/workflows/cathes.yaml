@@ -7,6 +7,10 @@ permissions:
   contents: read
   pull-requests: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+
 
 jobs:
   build:
@@ -47,9 +51,6 @@ jobs:
         run: |
           echo "This is a summary" >> $GITHUB_STEP_SUMMARY
   cancel-in-progress:
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
