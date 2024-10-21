@@ -28,4 +28,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.x"
+      - name: error-commands
+        run: |
+          echo ::error::This is and error
+          echo ::warning::This is a warning
+          echo ::set-output name=error::This is an error
+          echo ::debug::This is a debug message
+          echo ::mask::This is a secret
 
