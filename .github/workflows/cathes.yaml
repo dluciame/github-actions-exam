@@ -7,9 +7,6 @@ permissions:
   contents: read
   pull-requests: read
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -25,7 +22,7 @@ jobs:
     #     ports:
     #       # Maps the service container port to the host
     #       - 6379:6379
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,3 +46,17 @@ jobs:
       - name: step_summary
         run: |
           echo "This is a summary" >> $GITHUB_STEP_SUMMARY
+
+  cancel-in-progress:
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Cancel in progress
+        uses: actions/github-script@v4
+        with:
+          run: |
+            echo "Canceling in progress jobs"
