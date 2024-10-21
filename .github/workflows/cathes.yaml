@@ -46,7 +46,6 @@ jobs:
       - name: step_summary
         run: |
           echo "This is a summary" >> $GITHUB_STEP_SUMMARY
-
   cancel-in-progress:
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
