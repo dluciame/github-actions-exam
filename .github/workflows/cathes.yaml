@@ -7,15 +7,15 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    container: node:16-bullseye
-    services:
-      # Label used to access the service container
-      redis:
-        # Docker Hub image
-        image: redis
-        ports:
-          # Maps the service container port to the host
-          - 6379:6379
+    # container: node:16-bullseye
+    # services:
+    #   # Label used to access the service container
+    #   redis:
+    #     # Docker Hub image
+    #     image: redis
+    #     ports:
+    #       # Maps the service container port to the host
+    #       - 6379:6379
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -38,7 +38,9 @@ jobs:
       - name: env-vars
         run: |
           echo "var1=TEST" >> $GITHUB_ENV
-          echo "$var1"
+          echo $var1
+        outputs:
+          var1: ${{ steps.env-vars.outputs.var1 }}
       - name: consume var
         run: |
           echo ${{ steps.env-vars.outputs.var1 }}
