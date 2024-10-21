@@ -4,16 +4,10 @@ on:
   push:
 
 jobs:
-  # container-job:
-  #   # Containers must run in Linux based operating systems
-  #   runs-on: ubuntu-latest
-  #   # Docker Hub image that `container-job` executes in
-  #   container: node:16-bullseye
-
-  #   # Service containers to run with `container-job`
 
   build:
     runs-on: ubuntu-latest
+    container: node:16-bullseye
     services:
       # Label used to access the service container
       redis:
