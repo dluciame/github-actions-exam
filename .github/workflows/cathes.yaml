@@ -13,41 +13,16 @@ concurrency:
 
 
 jobs:
-  build:
-    permissions: 
-      pull-requests: none
+  hello_world_job:
     runs-on: ubuntu-latest
-    # container: node:16-bullseye
-    # services:
-    #   # Label used to access the service container
-    #   redis:
-    #     # Docker Hub image
-    #     image: redis
-    #     ports:
-    #       # Maps the service container port to the host
-    #       - 6379:6379
-
+    name: A job to say hello
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: cathe-node
-        uses: actions/setup-node@v2
+      - name: Hello world action step
+        id: hello
+        uses: actions/github-actions-exam@v1
         with:
-          node-version: "14"
-      - name: cathe-python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.x"
-      - name: error-commands
-        run: |
-          echo ::error::This is and error
-          echo ::warning::This is a warning
-          echo ::set-output name=error::This is an error
-          echo ::debug::This is a debug message
-          echo ::add-mask::{value}
-
-      - name: step_summary
-        run: |
-          echo "This is a summary" >> $GITHUB_STEP_SUMMARY
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
 
