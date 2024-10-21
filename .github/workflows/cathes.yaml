@@ -26,7 +26,6 @@ jobs:
     #     ports:
     #       # Maps the service container port to the host
     #       - 6379:6379
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
